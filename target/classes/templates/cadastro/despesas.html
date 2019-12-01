@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/html" xmlns:th="http://www.thymeleaf.org" >
+  <head>
+    <!-- Meta tags Obrigatórias -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link type="text/css" rel="stylesheet" href="/materialize\css\materialize.css"  media="screen,projection"/>
+	<link type="text/css" rel="stylesheet" href="/materialize/css/materialize.min.css"  media="screen,projection"/>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<style>
+	
+		body{
+			background-color:#DCDCDC;
+		
+		}
+		div{
+			text-align:center;
+			margin-top:50px;
+		
+		
+		}
+		
+		label{
+			color:black;
+			font-size: 14px;
+		}
+		
+		form input[type=submit]{
+			color:white;
+		}
+		
+		
+		table{
+			  width: 100%;
+			  margin-bottom : .5em;
+			  table-layout: fixed;
+			  text-align: center;
+		}
+		
+	
+	</style>
+    
+  </head>
+  <body>
+  <a href="/cadastrocarro" class="waves-effect waves-light btn" style="text-align:center" >Cadastro de Carro</a>
+  	<div th:each="c: ${carroobj}">
+  		<div >
+  		
+  		
+  		<p><b>Carro:</b><span th:text="${c.nome}"></span></p>	
+  		<p><b>Marca:</b><span th:text="${c.marca}"></span></p>
+  		<p><b>Valor:</b><span th:text="${c.valor}"></span></p>
+  		<p><b>Ano:</b><span th:text="${c.ano}"></span></p>
+  		
+  		
+  		</div>
+  	
+  		
+  		<div style="text-align:center"class="container">
+  			<form th:action="@{/addDespesaCarro/{carroid}(carroid=${carroobj.id})}" method="post">
+  				<div>
+  					<div>
+  						<label class="active" for="nome"><strong>Despesa:</strong></label>
+  						<input type="text" required="required"  style="width:145px" id="nome" name="nome" class="validate">
+  					
+  					</div>
+  					<div>
+  						<label class="active" for="data"><strong>Data:</strong></label>
+  						<input  type="date"  required="required" style="width:145px" id="data" readonly="readonly" name="data" class="validate">
+  					
+  					</div>
+  					<div>
+  						<label class="active" for="valor"><strong>Valor:</strong></label>
+  						<input  style="width:145px" id="valor" type="number" required="required" name="valor" class="validate">
+  					
+  					</div>
+  					<input type="submit" value="Adicionar" class="waves-effect waves-light btn">
+  				
+  				</div>
+  			
+  			</form>
+  		
+  		</div>
+  		<br>
+  		
+  		<br>
+  		<form action="pesquisardespesa" method="post">
+  		<label><b>Pesquisa por nome:</b></label>
+  		<input style="width:145px" name="nomepesquisa">
+		<input  class="waves-effect waves-light btn" type="submit" value="Buscar">
+		 		
+  		</form>
+  		<br>
+  		<h5>Despesas</h5>
+  		<br>
+  	
+  	
+  	</div>
+  	
+  	<div class="container">
+  	<table class="table table-hover">
+  	
+  		
+				<td><b>Despesa</b></td>
+				<td><b>Data</b></td>
+				<td><b>Valor</b></td>
+				
+  		<tr th:each="despesa: ${despesas}">
+  			<td th:text="${despesa.nome}"></td>
+  			<td th:text="${despesa.data}"></td>
+  			<td th:text="${despesa.valor}"></td>
+  			<td><a class="waves-effect waves-light btn" style="background-color:red" th:href="@{/removerdespesa/{iddespesa}(iddespesa=${despesa.id})}">Excluir</a></td>
+  		
+  		
+  		</tr>
+  		
+  	
+  	</table>
+  	</div>
+  	<script>
+  	
+	  	var today = new Date();
+	  	var dy = today.getDate();
+	  	var mt = today.getMonth()+1;
+	  	var yr = today.getFullYear();
+	  	document.getElementById('data').value= yr+"-"+mt+"-"+dy;
+  	
+  	
+  	</script>
+         <script type="text/javascript" src="/materialize/js/materialize.js"></script>
+         <script type="text/javascript" src="/materialize/js/materialize.min.js"></script>
+         
+   
+  </body>
+</html>

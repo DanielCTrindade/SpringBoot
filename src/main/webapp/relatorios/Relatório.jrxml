@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.10.0.final using JasperReports Library version 6.10.0-unknown  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="teste" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="327d755f-1e40-4ca7-b9e9-9c4b810d834b">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Coleção de objetos projeto springboot thymeleaf"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="data" class="java.sql.Date">
+		<fieldDescription><![CDATA[data]]></fieldDescription>
+	</field>
+	<field name="valor" class="java.lang.Double">
+		<fieldDescription><![CDATA[valor]]></fieldDescription>
+	</field>
+	<field name="Despesa:" class="java.lang.String">
+		<fieldDescription><![CDATA[nome]]></fieldDescription>
+	</field>
+	<field name="Carro" class="curso.springboot.model.Carro">
+		<fieldDescription><![CDATA[nome]]></fieldDescription>
+	</field>
+	<field name="nome" class="java.lang.String">
+		<fieldDescription><![CDATA[nome]]></fieldDescription>
+	</field>
+	<field name="carro" class="curso.springboot.model.Carro">
+		<fieldDescription><![CDATA[carro]]></fieldDescription>
+	</field>
+	<variable name="Total de despesas:" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{valor}]]></variableExpression>
+	</variable>
+	<variable name="Média de valor das despesas: " class="java.lang.Double" calculation="Average">
+		<variableExpression><![CDATA[$F{valor}]]></variableExpression>
+	</variable>
+	<variable name="Menor despesa:" class="java.lang.Double" calculation="Lowest">
+		<variableExpression><![CDATA[$F{valor}]]></variableExpression>
+	</variable>
+	<variable name="Maior despesa:" class="java.lang.Double" calculation="Highest">
+		<variableExpression><![CDATA[$F{valor}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="93" splitType="Stretch">
+			<staticText>
+				<reportElement x="96" y="30" width="320" height="39" uuid="9465c727-5db9-4f40-8143-ea38660ed46e"/>
+				<textElement>
+					<font size="18"/>
+				</textElement>
+				<text><![CDATA[Quanto custa meu carro por mês? ]]></text>
+			</staticText>
+			<image>
+				<reportElement x="390" y="10" width="84" height="72" uuid="005f0aec-54b0-4098-98a7-f9280d4c55e6"/>
+				<imageExpression><![CDATA["C:/Users/danie/OneDrive/Área de Trabalho/carro.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="96" splitType="Stretch">
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="402" y="0" width="100" height="30" uuid="4229774c-28c7-4f63-9df3-efb5baaa3a0f"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField pattern="HH:mm">
+				<reportElement x="496" y="0" width="100" height="30" uuid="61e122f4-cee0-4ece-8b89-1293c38a77ff"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="41" splitType="Stretch">
+			<staticText>
+				<reportElement x="96" y="6" width="100" height="30" uuid="53f2ccba-26b1-4eb1-aa23-6bfb12d9ffae">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2143d6a6-2651-45a2-b5e1-086e258db30f"/>
+				</reportElement>
+				<textElement markup="html">
+					<font size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Despesa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="206" y="6" width="100" height="30" uuid="883e1b88-b735-407c-9829-4e1ffaeb2bbe">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b8066829-277a-4f78-a76c-e497604ecc60"/>
+				</reportElement>
+				<textElement>
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="308" y="6" width="100" height="30" uuid="7b6676a6-6bde-48a2-bb91-7e8f31097ef3">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="824a2180-9d69-48c6-98d8-65035f3b7bd8"/>
+				</reportElement>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Valor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="6" width="100" height="30" uuid="f8454378-c35a-440e-9a9a-e835118c5798">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d6177ef3-2773-45e9-964e-7b0e0e69c38d"/>
+				</reportElement>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Carro]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="36" splitType="Stretch">
+			<textField>
+				<reportElement x="96" y="5" width="100" height="30" uuid="03083f5c-60f1-4512-8604-af21eb31ec55">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2143d6a6-2651-45a2-b5e1-086e258db30f"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{Despesa:}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="206" y="5" width="100" height="30" uuid="577f8fd4-8c1e-4ddf-a82c-600d68e1519c">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b8066829-277a-4f78-a76c-e497604ecc60"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{data}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="308" y="5" width="100" height="30" uuid="5f29e941-0441-4595-ad9e-5a4ea8b07fc7">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="824a2180-9d69-48c6-98d8-65035f3b7bd8"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{valor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2" y="5" width="100" height="30" uuid="ec563c3d-a28b-4028-b030-6eabcf1619db">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d6177ef3-2773-45e9-964e-7b0e0e69c38d"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{carro}.getNome()]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="-20" y="-16" width="595" height="1" uuid="b6d31b3e-925d-42b2-b1a6-3a933a857411"/>
+			</line>
+			<line>
+				<reportElement x="-20" y="21" width="595" height="1" isRemoveLineWhenBlank="true" uuid="3e9501a4-c56a-44da-9803-13a0e4d706c1"/>
+			</line>
+		</band>
+	</detail>
+	<summary>
+		<band height="358" splitType="Stretch">
+			<staticText>
+				<reportElement x="355" y="89" width="120" height="30" uuid="b160ba35-a86a-4cbf-9409-9d9e22e7b9c3"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Menor despesa:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="355" y="119" width="100" height="30" uuid="cfd8ba40-57c4-46e5-8c53-418d8eccfbe1"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Maior despesa:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="442" y="121" width="100" height="30" uuid="d0dabc4c-dd60-48c5-bc81-fb7ca6703473"/>
+				<textFieldExpression><![CDATA[$V{Maior despesa:}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="443" y="92" width="100" height="30" uuid="d15ef8ab-20e6-47ff-a59f-351312dd0df8"/>
+				<textFieldExpression><![CDATA[$V{Menor despesa:}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="469" y="62" width="100" height="30" uuid="72d60e3b-9eab-44ac-88e5-2d6497036744"/>
+				<textFieldExpression><![CDATA[$V{Média de valor das despesas: }]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="354" y="59" width="140" height="30" uuid="2a6d0773-bc6d-43a2-b60f-f405abc4e6a6"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Média das despesas:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="355" y="29" width="146" height="30" uuid="26f43fe8-8f68-4ef9-89c0-711d4cdfdfc4"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Total de despesas:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="459" y="31" width="100" height="30" uuid="e68b60c9-1c66-420a-a092-7519404afa33"/>
+				<textFieldExpression><![CDATA[$V{Total de despesas:}]]></textFieldExpression>
+			</textField>
+			<lineChart>
+				<chart evaluationTime="Report">
+					<reportElement x="50" y="26" width="200" height="170" uuid="61d16ddf-5fbb-4d6a-a5a6-5857da0b6c00"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA["Despesas"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{valor}.toString()]]></categoryExpression>
+						<valueExpression><![CDATA[$F{valor}]]></valueExpression>
+						<labelExpression><![CDATA[$F{nome}]]></labelExpression>
+					</categorySeries>
+					<categorySeries>
+						<seriesExpression><![CDATA[$F{nome}]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{valor}.toString()]]></categoryExpression>
+						<valueExpression><![CDATA[$F{valor}]]></valueExpression>
+						<labelExpression><![CDATA[$F{nome}]]></labelExpression>
+					</categorySeries>
+				</categoryDataset>
+				<linePlot>
+					<plot/>
+					<categoryAxisFormat>
+						<axisFormat labelColor="#000000" tickLabelColor="#000000" axisLineColor="#000000"/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat labelColor="#000000" tickLabelColor="#000000" axisLineColor="#000000"/>
+					</valueAxisFormat>
+				</linePlot>
+			</lineChart>
+		</band>
+	</summary>
+</jasperReport>

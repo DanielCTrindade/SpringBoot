@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/html" xmlns:th="http://www.thymeleaf.org" >
+  <head>
+    <!-- Meta tags Obrigatórias -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link type="text/css" rel="stylesheet" href="/materialize\css\materialize.css"  media="screen,projection"/>
+	<link type="text/css" rel="stylesheet" href="/materialize/css/materialize.min.css"  media="screen,projection"/>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<style>
+	
+		body{
+			background-color:#DCDCDC;
+		
+		}
+		div{
+			
+			margin-top:50px;
+		
+		
+		}
+		label{
+			color:black;
+			font-size: 14px;
+		}
+		
+		form input[type=submit]{
+			color:white;
+		}
+		
+		table{
+			  width: 100%;
+			  margin-bottom : .5em;
+			  table-layout: fixed;
+			  text-align: center;
+		}
+		a{
+			margin: 1px;
+		}
+	
+	</style>
+    
+  </head>
+  <body>
+  	
+  	  	<div class="alert alert-danger"  role="alert"  th:each = "m: ${msg}">
+  			<span th:text = "${m}"></span>
+  		</div>
+  	
+  	<div style="text-align: center" class='container'>
+    	<form action="salvarcarro" id="formcarro" method="post" th:object="${carroobj}" >
+    		
+    		<input type="hidden" style="width:200px" name="id" th:field="*{id}" required="required" readonly="readonly">
+    		<br>
+    		<label><strong>Carro:</strong></label>
+    		<input name="nome"  type="text" style="width:200px" class="validate"  required="required" th:field="*{nome}">
+    		<br>
+    		<label><strong>Marca:</strong></label>
+    		<input name="marca" type="text" style="width:200px" class="validate" required="required" th:field="*{marca}">
+    		<br>
+    		<label><strong>Valor:</strong></label>
+    		<input type="number"style="width:200px" class="validate" required="required" name="valor" th:field="*{valor}">
+    		<br>
+    		<label><strong>Ano:</strong></label>
+    		<input type="text" style="width:200px" class="validate" required="required"  name="ano" th:field="*{ano}">
+    		<br>
+    		
+    		<input class="waves-effect waves-light btn" value="Adicionar" type="submit"></input>
+    		<a class="waves-effect waves-light btn" style="text-align:center" href="/listacarros">Listar Carros</a>
+    		<button class="waves-effect waves-light btn" onclick="document.getElementById('formcarro').reset();">Limpar</button>
+    	 </form>
+    	<br>
+    	<br>
+    		<form action="pesquisarcarro" method="post">
+    			<label><strong>Pesquisa por nome:</strong></label>
+    			<input style="width:200px" name="nomepesquisa">
+    			<input  class="waves-effect waves-light btn"   value="Buscar" type="submit" onclick="document.getElementById('pesquisarcarro'),method='POST'"></input>
+    			<input  class="waves-effect waves-light btn"   value="Gerar relatório" onclick="document.getElementById('pesquisarcarro'),method='GET'" type="submit"></input>
+    		</form>
+		
+	</div>
+	
+	<div class='container'>
+		
+		<table class="table table-hover">
+			
+			
+				
+				<td><b>Carro</b></td>
+				<td><b>Marca</b></td>
+				<td><b>Valor</b></td>
+				<td><b>Ano</b></td>
+			
+			<tr th:each = "carro : ${carros}">
+			
+			<td><a class="badge badge-dark" th:href="@{/despesas/{idcarro}(idcarro=${carro.id})}"><span  th:text="${carro.nome}"></span></a></td>
+			<td th:text="${carro.marca}"></td>
+			<td th:text="${carro.valor}"></td>
+			<td th:text="${carro.ano}"></td>
+			
+			<td><a class="waves-effect waves-light btn" style="background-color:blue" th:href="@{/editarcarro/{idcarro}(idcarro=${carro.id})}">Editar</a><a class="waves-effect waves-light btn" style="background-color:red" th:href="@{/removercarro/{idcarro}(idcarro=${carro.id})}">Excluir</a></td>
+			
+			</tr>
+			
+		</table>
+	</div>
+         <script type="text/javascript" src="/materialize/js/materialize.js"></script>
+         <script type="text/javascript" src="/materialize/js/materialize.min.js"></script>
+         
+   
+  </body>
+</html>
